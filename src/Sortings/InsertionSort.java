@@ -11,10 +11,10 @@ public class InsertionSort {
         j--;
       }
       arr[j+1]=key;
-      for (int num: arr){
-        System.out.println(num+" ");
-      } 
-      System.out.println();
+      // for (int num: arr){
+      //   System.out.println(num+" ");
+      // } 
+      // System.out.println();
     }
     for (int num: arr){
       System.out.println(num+" ");
