@@ -8,6 +8,10 @@ public class Trees{
     tree.insert(15);
     tree.insert(2);
     tree.insert(4);
+    tree.insert(444);
+    tree.insert(41);
+    tree.insert(12);
+
     tree.inOrder();
 
   }
