@@ -1,0 +1,3 @@
+//cd "c:\Users\User\Desktop\Eski ders notları\JAVA\Java-Exercises\Java-Exercises\JavaPlayground"
+// javac AptalJava.java
+
