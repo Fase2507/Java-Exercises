@@ -1,8 +1,8 @@
-public class Main extends Thread {
+public class exMain extends Thread {
   public static int amount = 0;
 
   public static void main(String[] args) throws InterruptedException {
-    Main thread = new Main();
+    exMain thread = new exMain();
     thread.start();
     thread.join(); // Wait for the thread to finish
     System.out.println(amount);
