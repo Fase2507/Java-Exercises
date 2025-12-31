@@ -1,0 +1,8 @@
+3 essential collection: List, Set, Map under java util package
+● Elemanları Integer olan bir ArrayList’i parametre alıp, listeyi terse çevirip
+geri döndüren (jenerik) tersiniBul metodu kodlayın.
+● Elemanları Integer tipindeki iki ArrayList’i paramere alıp, birleştirdikten
+sonra geriye birleştirilmiş diziyi döndüren (jenerik) listeleriBirlestir
+metodunu kodlayın.
+
+LISTELERDE \SIRALAMA
