@@ -1,8 +1,6 @@
 package Collections;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class StudentExam implements Comparable<StudentExam> {
     private Double ortalama;
@@ -65,9 +63,10 @@ public class StudentExam implements Comparable<StudentExam> {
         else if(o.getOrtalama()>this.ortalama) return 1;
         else return 0;
     }
+
     public static Scanner keyboard = new Scanner(System.in);
     public static void main(String[] args) {
-        ArrayList<StudentExam> ogrler = new ArrayList<>();
+        HashSet<StudentExam> ogrler = new HashSet<>();
         StudentExam ali = new StudentExam("Ali hay",55,3.5);
         StudentExam veli = new StudentExam("Veli bekir",56,2.6);
         StudentExam ayse = new StudentExam("Aysenur kara",57,2.95);
@@ -76,28 +75,31 @@ public class StudentExam implements Comparable<StudentExam> {
         ogrler.add(ayse);
         ayse.setIsimSoy("Aysegul kara");
         ayse.setOgrNo(53);
-        System.out.println("How many students do you want to add?");
-        int n = keyboard.nextInt();
-        System.out.println(ogrListMake(n));
-//        StudentExam kopyaAli = new StudentExam("Ali hay",55);
-//        boolean snc = ogrler.contains(kopyaAli);
-//        System.out.println(snc);
 
+        ogrler.add(new StudentExam("Hale soyca",59,4.0));
+        System.out.println("How many students do you wanna add ?  ");
+        int number = keyboard.nextInt();
+        HashSet<StudentExam> ogrler2 = ogrListMake(number);
+        List<StudentExam> sorted = new ArrayList<>(ogrler2);
+        Collections.sort(sorted);
+        for(StudentExam e:sorted){
+            System.out.println(e);
+        }
     }
 
-    public static ArrayList<StudentExam> ogrListMake(int n){
+    public static HashSet<StudentExam> ogrListMake(int n){
         System.out.printf("Enter %d students to add list",n);
-        ArrayList<StudentExam> ogrList = new ArrayList<>(n);
+        HashSet<StudentExam> ogrList = new HashSet<>(n);
         int sayac = 0;
 
         do{
-            System.out.println("\n Enter Student number: ");
+            System.out.println("\nEnter Student number: ");
             long ogrno = keyboard.nextLong();
             keyboard.nextLine();
             System.out.println("Enter Student name-surname: ");
             String isimsoy = keyboard.nextLine();
-            keyboard.nextLine();
-            System.out.println("Enter gpa: ");
+//            keyboard.nextLine();
+            System.out.print("Enter gpa: \n");
             Double ortalama = keyboard.nextDouble();
             StudentExam ogrenci = new StudentExam(isimsoy,ogrno,ortalama);
             ogrList.add(ogrenci);
@@ -106,7 +108,6 @@ public class StudentExam implements Comparable<StudentExam> {
         keyboard.close();
         return ogrList;
     }
-
 
 
 }
