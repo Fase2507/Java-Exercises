@@ -4,7 +4,7 @@ import java.util.*;
 
 public class StudentExam implements Comparable<StudentExam> {
     private Double ortalama;
-    private long ogrNo;
+    private Long ogrNo;
     private String isimSoy;
 
     public StudentExam(String isimSoy, long ogrNo, Double ortalama){
@@ -66,29 +66,44 @@ public class StudentExam implements Comparable<StudentExam> {
 
     public static Scanner keyboard = new Scanner(System.in);
     public static void main(String[] args) {
-        HashSet<StudentExam> ogrler = new HashSet<>();
-        StudentExam ali = new StudentExam("Ali hay",55,3.5);
-        StudentExam veli = new StudentExam("Veli bekir",56,2.6);
-        StudentExam ayse = new StudentExam("Aysenur kara",57,2.95);
-        ogrler.add(ali);
-        ogrler.add(veli);
-        ogrler.add(ayse);
-        ayse.setIsimSoy("Aysegul kara");
-        ayse.setOgrNo(53);
-
-        ogrler.add(new StudentExam("Hale soyca",59,4.0));
         System.out.println("How many students do you wanna add ?  ");
         int number = keyboard.nextInt();
         HashSet<StudentExam> ogrler2 = ogrListMake(number);
-        List<StudentExam> sorted = new ArrayList<>(ogrler2);
-        Collections.sort(sorted);
-        for(StudentExam e:sorted){
-            System.out.println(e);
+        showOgrler(ogrler2);
+        HashMap<Long,StudentExam> ogrler = ogrListMakeMap(number,ogrler2);
+        try{
+            StudentExam aranan = searchStudent(ogrler,123L);
+            System.out.println("aranan ogrenci "+aranan.getIsimSoy()+" ortalamasi "+aranan.getOrtalama());
+
+        }catch (StudentNotFoundException e){
+            e.printStackTrace();
         }
     }
 
+
+
+    //Display Students by gpa
+    public static void showOgrler(HashSet<StudentExam> ogrList){
+        List<StudentExam> sortedOgrList = new ArrayList<>(ogrList);
+        Collections.sort(sortedOgrList);
+        for(StudentExam ogr:sortedOgrList){
+            System.out.println(ogr);
+        }
+    }
+
+    public static HashMap<Long,StudentExam> ogrListMakeMap(int n, HashSet<StudentExam> ogrList){
+        HashMap<Long, StudentExam> ogrler = new HashMap<>();
+        List<StudentExam> sortedOgrList = new ArrayList<>(ogrList);
+        Collections.sort(sortedOgrList);
+        for(StudentExam ogr:sortedOgrList){
+            ogrler.put(ogr.getOgrNo(),ogr);
+        }
+        keyboard.close();
+
+        return ogrler;
+    }
+    //Make Student List by HashSet
     public static HashSet<StudentExam> ogrListMake(int n){
-        System.out.printf("Enter %d students to add list",n);
         HashSet<StudentExam> ogrList = new HashSet<>(n);
         int sayac = 0;
 
@@ -105,9 +120,15 @@ public class StudentExam implements Comparable<StudentExam> {
             ogrList.add(ogrenci);
             sayac++;
         }while (sayac<n);
-        keyboard.close();
         return ogrList;
     }
 
-
+    //Search Student that you want
+    public static StudentExam searchStudent(HashMap<Long, StudentExam> ogrler, Long ogrNo){
+        StudentExam aranan = ogrler.get(ogrNo);
+        if(aranan==null)
+            throw new StudentNotFoundException(ogrNo);
+        else
+            return aranan;
+    }
 }
