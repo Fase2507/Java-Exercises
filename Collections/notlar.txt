@@ -1,3 +1,63 @@
+“Serializable arayüzü kullanılırken, serialize edilen nesnenin içerdiği tüm referans tiplerinin de
+Serializable olması gerekmektedir. Aksi halde NotSerializableException oluşmaktadır.”
+
+
+        System.out.println("=== Student Control Panel ===");
+        System.out.println("What do you want to do ?");
+        System.out.println("1. Add Student into system");
+        System.out.println("2. Show Student list");
+        System.out.println("3. Search Student name by number");
+
+
+^[a-zA-ZçÇğĞıİöÖşŞüÜ ]+$
+
+100_000_000  <= no <= 999_999_999
+
+
+
+🎯 PROJENİN ÖZETİ (PDF’E UYUMLU)
+
+Komut Satırı (CLI)
+
+Tek bölüm
+
+Birden fazla öğrenci
+
+Birden fazla ders
+
+Öğrencilerin ders–harf notu → sayısal karşılık
+
+AKTS ağırlıklı GPA
+
+Azalan GPA sırasına göre listeleme
+
+Konsola ve sonuclar.txt dosyasına yazma
+
+Tüm sınıflar JavaDoc’lu
+
+Hatalı girişlere dayanıklı
+
+
+Ogrenci eklerken hashset kullan cunku ayni olan veriyi tutmuyor ArrayList ile ayni.
+
+
+“Bölüm bilgilerini giriniz”
+
+Bölüm bilgileri alınır
+
+“Öğrenci bilgilerini giriniz”
+
+son → öğrenci girişi biter
+
+“Ders bilgilerini giriniz”
+
+son → ders girişi biter
+
+Her öğrenci için:
+
+
+
+
 3 essential collection: List, Set, Map under java util package
 ● Elemanları Integer olan bir ArrayList’i parametre alıp, listeyi terse çevirip
 geri döndüren (jenerik) tersiniBul metodu kodlayın.
@@ -6,3 +66,32 @@ sonra geriye birleştirilmiş diziyi döndüren (jenerik) listeleriBirlestir
 metodunu kodlayın.
 
 LISTELERDE \SIRALAMA
+
+
+● Diziler
+○ Tek tip veri taşıyabilir.
+○ Boyutu sabit ve oluşturma anında belirli.
+● Collections Framework Sınıfları
+○ Dizilere nesne yönelimli yaklaşım paradigmasının uygulanmış halidir.
+○ Esnek tipteki nesneleri bir arada taşıyabilme esnekliği sunar.
+■ Generics mimarisi sayesinde
+○ Genişleyebilir boyuta sahiptir.
+○ Elemanlarının sıralı olmasını garantileyen implementasyonları mevcuttur.
+○ Anahtar-değer çiftleri depolayabilirler.
+
+○ Elemanlarının sıralı olmasını garantileyen implementasyonları mevcuttur.
+○ Anahtar-değer çiftleri depolayabilirler.
+
+Is file: true
+Size - Bytes: 1140, KB: 1,11, MB: 0,00
+Character breakdown:
+Letters: 857
+Digits: 1
+Spaces: 104
+Newlines: 28
+Other characters: 68
+
+The issue is that DecimalFormat uses your system's locale, and in Turkish locale, the decimal separator is comma (,), not dot (.)
+. When you format 1.748046875 with Turkish locale, it becomes "1,75", which Double.parseDouble() can't parse because it expects dot notation.
+        DecimalFormat noktaliFormat = new DecimalFormat("#.##", DecimalFormatSymbols.getInstance(Locale.US));
+Burada sadece 6 tane kelime var.Writing something in java is so easy!Writing something in java is so easy!I guess i'm doing right thing\n I hope that works"\n" '/n' we will seenothing-3
