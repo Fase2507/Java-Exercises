@@ -83,17 +83,17 @@ public class Students implements Comparable<Students>, Serializable {
         return courseScores;
     }
 
-    /* ECTS CALCULATION*/
-    public double ectsCalc(){
-        double total = 0;
-        int totalEcts = 0;
-
-        for(Map.Entry<Course,Double> entry : courseScores.entrySet()){
-            total += entry.getKey().getEcts() * entry.getValue();
-            totalEcts += entry.getKey().getEcts();
-        }
-        return totalEcts == 0 ? 0: total/totalEcts;
-    }
+//    /* ECTS CALCULATION*/
+//    public double ectsCalc(){
+//        double total = 0;
+//        int totalEcts = 0;
+//
+//        for(Map.Entry<Course,Double> entry : courseScores.entrySet()){
+//            total += entry.getKey().getEcts() * entry.getValue();
+//            totalEcts += entry.getKey().getEcts();
+//        }
+//        return totalEcts == 0 ? 0: total/totalEcts;
+//    }
 
     public double calculateGPA() {
 
@@ -119,7 +119,7 @@ public class Students implements Comparable<Students>, Serializable {
     //  Compare and sort
     @Override
     public int compareTo(Students others){
-        return Double.compare(others.ectsCalc(),this.ectsCalc());
+        return Double.compare(others.calculateGPA(),this.calculateGPA());
     }
 //    @Override
 //    public int compareTo(Students o) {// Sort based on student numbers

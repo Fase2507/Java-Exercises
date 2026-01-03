@@ -28,8 +28,8 @@ public class Major{
     }
 
     public void setName(String name) {
-        if(name==null || name.isBlank()){
-            throw new IllegalArgumentException("Bölüm adı boş geçilemez!!");
+        if(name==null || name.isBlank() || !name.matches("^[a-zA-ZçÇğĞıİöÖşŞüÜ ]+$")){
+            throw new IllegalArgumentException("Bölüm adı boş geçilemez ya da Ozel karakter kullanilamaz!!");
         }
         this.name = name;
     }

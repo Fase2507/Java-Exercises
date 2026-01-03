@@ -1,5 +1,8 @@
 package JavaFinal;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -144,7 +147,7 @@ class Panel{
 
                         student.getCourseScores().put(course, letterGrade.getValue());
 
-                        System.out.println("Genel ortalama: "+student.calculateGPA());
+                        System.out.printf("Genel ortalama: %.2f \n",student.calculateGPA());
 
 
                         break;
@@ -155,6 +158,29 @@ class Panel{
             }
         }
 
+
+        System.out.println("\n----- RESULTS -----");
+        try(BufferedWriter br = new BufferedWriter(new FileWriter("results.txt"))){
+
+            int rank = 1;
+            for(Students student:students){
+                String line = rank + ") "
+                        + student.getName() + " "
+                        + student.getSurname()
+                        + " - GPA: "
+                        + String.format("%.2f", student.calculateGPA());
+
+                System.out.println(line);
+                br.write(line);
+                br.newLine();
+
+                rank++;
+
+            }
+
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
 
 
     }
