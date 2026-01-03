@@ -84,17 +84,6 @@ public class Students implements Comparable<Students>, Serializable {
         return courseScores;
     }
 
-//    /* ECTS CALCULATION*/
-//    public double ectsCalc(){
-//        double total = 0;
-//        int totalEcts = 0;
-//
-//        for(Map.Entry<Course,Double> entry : courseScores.entrySet()){
-//            total += entry.getKey().getEcts() * entry.getValue();
-//            totalEcts += entry.getKey().getEcts();
-//        }
-//        return totalEcts == 0 ? 0: total/totalEcts;
-//    }
 
     public double calculateGPA() {
 
