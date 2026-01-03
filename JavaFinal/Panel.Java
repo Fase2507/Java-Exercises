@@ -1,8 +1,6 @@
 package JavaFinal;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -10,17 +8,42 @@ import java.util.List;
 import java.util.Scanner;
 
 class Panel{
+
     public static Scanner keyboard = new Scanner(System.in);
     public static void main(String[] args) {
-        System.out.println("=== Student Control Panel ===");
-        System.out.println("What do you want to do ?");
-        System.out.println("1. Add Student into system");
-        System.out.println("2. Show Student list");
-        System.out.println("3. Search Student name by number");
 
-        Major major = new Major();
-        List<Students> students = new ArrayList<>();
-        List<Course> courses = new ArrayList<>();
+         Major major = new Major();
+         List<Students> students = new ArrayList<>();
+         List<Course> courses = new ArrayList<>();
+
+        System.out.println("\n----- RESULTS OBJECT READING -----");
+
+        try (ObjectInputStream ois =
+                     new ObjectInputStream(new FileInputStream("results.dat"))) {
+
+            List<Students> loadedStudents = (List<Students>) ois.readObject();
+
+            System.out.println("Students successfully read from file.");
+
+            for (Students student : loadedStudents) {
+                System.out.println(student.toString());
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("\n -------RESULTS NORMAL READING-----------");
+        try(BufferedReader br = new BufferedReader(new FileReader("results.txt"))){
+            String line;
+            while ((line=br.readLine())!=null){
+                System.out.println(line);
+            }
+
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+
 
         try {
 
@@ -159,8 +182,8 @@ class Panel{
         }
 
 
-        System.out.println("\n----- RESULTS -----");
-        try(BufferedWriter br = new BufferedWriter(new FileWriter("results.txt"))){
+        System.out.println("\n----- RESULTS NORMAL WRITING -----");
+        try(BufferedWriter br = new BufferedWriter(new FileWriter("results.txt",true))){
 
             int rank = 1;
             for(Students student:students){
@@ -183,5 +206,49 @@ class Panel{
         }
 
 
+
+        System.out.println("\n----- RESULTS OBJECT WRITING -----");
+
+        try (ObjectOutputStream oos =
+                     new ObjectOutputStream(new FileOutputStream("results.dat"))) {
+
+            oos.writeObject(students);
+            System.out.println("Students successfully written to file.");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+
+//        System.out.println("\n----- RESULTS OBJECT WRITING -----");
+//        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("results.dat",true)))
+//        {
+//            int rank = 1;
+//            for(Students student:students){
+//                String line = rank + ") "
+//                        + student.getName() + " "
+//                        + student.getSurname()
+//                        + " - GPA: "
+//                        + String.format("%.2f", student.calculateGPA());
+//
+//                System.out.println(line);
+//                oos.writeObject(students);
+//                oos.writeObject("\n");
+//                System.out.println("Students successfully written to file.");
+//
+//                rank++;
+//
+//            }
+//
+//        }
+//        catch (IOException e){
+//            System.out.println(e.getMessage());
+//        }
+
+
+
+
     }
+
+
 }

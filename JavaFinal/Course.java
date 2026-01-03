@@ -1,10 +1,15 @@
 package JavaFinal;
 
-public class Course{
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Course implements Serializable {
     private String name;
     private String code;
     private int ects;
 
+    @Serial
+    private static final long serialVersionUID = 1L;
     /*GETTER SETTER*/
     public String getName(){return name;}
     public String getCode(){return code;}

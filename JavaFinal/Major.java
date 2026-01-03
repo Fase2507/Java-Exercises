@@ -1,11 +1,14 @@
 package JavaFinal;
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Major{
+public class Major implements Serializable {
     private String name;
     private String webPage;
     private LocalDate foundingDate;
-
+    @Serial
+    private static final long serialVersionUID = 1L;
     /*GETTER SETTER METHODS*/
 
     public String getName() {

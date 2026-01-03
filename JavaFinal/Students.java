@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Students implements Comparable<Students>, Serializable {
 
@@ -121,6 +122,27 @@ public class Students implements Comparable<Students>, Serializable {
     public int compareTo(Students others){
         return Double.compare(others.calculateGPA(),this.calculateGPA());
     }
+
+    @Override
+    public String toString(){
+        return this.name + " " + this.surname + " "+ this.studentNum+" "+ String.format("%.2f", this.calculateGPA());
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(this.studentNum,this.surname,this.calculateGPA());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof Students)) {
+            return false;
+        }
+        Students ogrenci = (Students) o;
+        return Objects.equals(this.studentNum, ogrenci.getStudentNum()) && Objects.equals(this.name, ogrenci.getName());
+    }
+
 //    @Override
 //    public int compareTo(Students o) {// Sort based on student numbers
 //        if(this.studentNum>o.getStudentNum()){
